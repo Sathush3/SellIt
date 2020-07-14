@@ -1,0 +1,84 @@
+import React from "react";
+import Statusbar from "expo-status-bar";
+import {
+  useDimensions,
+  useDeviceOrientation,
+} from "@react-native-community/hooks";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  SafeAreaView,
+  Button,
+  Alert,
+  Platform,
+  StatusBar,
+} from "react-native";
+
+export default function App() {
+  const handlePress = () => console.log("text clicked");
+  let x = 1;
+
+  console.log("app started");
+  const { landscape } = useDeviceOrientation();
+  return (
+    /*comment*/
+    <SafeAreaView style={[styles.container]}>
+      {/* <Text numberOfLines={3} onPress={handlePress}>
+      <Text>hello world!</Text>
+      {/*<Image source={require("./assets/icon.png")} />
+
+      <TouchableHighlight onPress={() => console.log("image tapped")}>
+        <Image
+          blurRadius={1}
+          fadeDuration={1000}
+          source={{
+            width: 200,
+            height: 300,
+            uri: "https://picsum.photos/200/300",
+          }}
+        />
+      </TouchableHighlight>
+      <TouchableNativeFeedback>
+        <View
+          style={{ width: 200, height: 70, backgroundColor: "dodgerblue" }}
+        ></View>
+      </TouchableNativeFeedback> */}
+      <View
+        style={{
+          backgroundColor: "dodgerblue",
+          width: "100%",
+          height: landscape ? "90%" : "30%",
+        }}
+      ></View>
+      <Button
+        color="orange"
+        title="click me"
+        onPress={
+          () =>
+            Alert.prompt("This is title", "This is message", (text) =>
+              console.log(text)
+            )
+
+          // Alert.alert("Title Head", "this is message", [
+          //   { text: "Yes", onPress: () => console.log("yes is pressed") },
+          //   { text: "No", onPress: () => console.log("No is pressed") },
+          // ])
+        }
+      />
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
+}
+const containerStyle = { backgroundColor: "orange" };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+});
