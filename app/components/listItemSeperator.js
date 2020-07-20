@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 import colors from "../config/colors";
 
-export default function listItemSeperator() {
-  return <View style={styles.separator}></View>;
+export default function listItemSeperator(style) {
+  return <View style={[styles.separator, style]}></View>;
 }
 
 const styles = StyleSheet.create({
